@@ -1,0 +1,45 @@
+alias: buttonMAINon
+description: ""
+triggers:
+  - device_id: 2e8c74b51e5a8fc1994ca0216fba2189
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "005"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 005
+    trigger: device
+    value: 0
+conditions: []
+actions:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: 0d2a30e4dde31e99d99407816efb9680
+            state: "off"
+        sequence:
+          - target:
+              entity_id:
+                - 0d2a30e4dde31e99d99407816efb9680
+                - 8ab3e03bc1561fafc74f3880a74cd5e9
+                - 256224e1a5e5e7df51872de5f6c3d980
+                - f97b4cf8924638ab33ce26802923125a
+            data:
+              brightness_pct: 80
+              color_temp: 154
+            action: light.turn_on
+      - conditions:
+          - condition: state
+            entity_id: 0d2a30e4dde31e99d99407816efb9680
+            state: "on"
+        sequence:
+          - target:
+              entity_id:
+                - 0d2a30e4dde31e99d99407816efb9680
+                - 8ab3e03bc1561fafc74f3880a74cd5e9
+                - 256224e1a5e5e7df51872de5f6c3d980
+                - f97b4cf8924638ab33ce26802923125a
+            action: light.turn_off
+    default: []
+mode: single
